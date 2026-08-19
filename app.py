@@ -126,7 +126,7 @@ elif mode == "Quadratics":
 
             if discriminant < 0:
                 real_part = round(-b / (2*a), 4)
-                imag_part = round((bs(discriminant)**0.5)/(2*a), 4)
+                imag_part = round((abs(discriminant)**0.5)/(2*a), 4)
                 sol1 = f"{real_part} + {imag_part}i"
                 sol2 = f"{real_part} - {imag_part}i"
                 st.info("The roots are complex.")
@@ -165,3 +165,4 @@ elif mode == "Calculus":
             st.error(f"Error: Could not parse '{user_input}'.")
 
 elif mode == "Stats":
+    
