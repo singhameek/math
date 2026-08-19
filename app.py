@@ -11,7 +11,7 @@ st.set_page_config(layout="wide")
 st.set_page_config(page_title="Math", page_icon="+")
 st.title("Math Solver")
 
-mode = st.sidebar.selection("Select Mode", ["Single Equation", "Simultaneous", "Trig", "Quadratics", "Calculus", "Stats", "Unit Conversion"])
+mode = st.sidebar.selectbox("Select Mode", ["Single Equation", "Simultaneous", "Trig", "Quadratics", "Calculus", "Stats", "Unit Conversion"])
 
 if mode == "Single Equation":
     st.header("Solve $ax +b = c$")
@@ -24,7 +24,7 @@ if mode == "Single Equation":
             st.error("a cannot be 0")
         else:
             x=(c-b)/a
-            st.success(f"Result: $x = {round(x,4)}")
+            st.success(f"Result: $x = {round(x,4)}$")
 
 elif mode == "Simultaneous":
     st.header("Solve $ax+by=c$ and $dx+ey=f$")
@@ -48,7 +48,7 @@ elif mode == "Simultaneous":
             y_res = ((a*f)-(c*d))/D
             st.success(f"Results: $x = {round(x_res, 4)}$, $y = {round(y_res, 4)}$")
 
-            fig, ax = plt.subplots(figsizw=(8,8))
+            fig, ax = plt.subplots(figsize=(8,8))
             limit = max(abs(x_res), abs(y_res), 10) + 2
             x_vals = np.linspace(-limit, limit, 400)
 
@@ -94,7 +94,7 @@ elif mode == "Trig":
 
         elif trigfunc == "inverse sine":
             if -1<= value <=1:
-                result_deg = math.degrees(math.acos(value))
+                result_deg = math.degrees(math.asin(value))
                 st.success(f"Result: {round(result_deg, 4)}")
             else:
                 st.error("Value must be between 1 and -1")
@@ -110,4 +110,58 @@ elif mode == "Trig":
             result_deg = math.degrees(math.atan(value))
             st.success(f"Result: {round(result_deg, 4)}")
 
-        
+elif mode == "Quadratics":
+    st.header("Solve $ax^2 + bx + c = 0$")
+    a = st.number_input("a", value = 1.0, key="quad_a")
+    b = st.number_input("b", value=0.0, key="quad_b")
+    c = st.number_input("b", value = 0.0, key="quad_c")
+    sol1= None
+    sol2 = None
+
+    if st.button("Solve", key="btn_quadratic"):
+        if a == 0:
+            st.warning(f"This is a linear equation. $x = {-c/b if b != 0 else "Undefined"}")
+        else:
+            discriminant = b**2 - 4*a*c
+
+            if discriminant < 0:
+                real_part = round(-b / (2*a), 4)
+                imag_part = round((bs(discriminant)**0.5)/(2*a), 4)
+                sol1 = f"{real_part} + {imag_part}i"
+                sol2 = f"{real_part} - {imag_part}i"
+                st.info("The roots are complex.")
+                st.success(f"$x_1 = {sol1}$")
+                st.success(f"$x_2 = {sol2}$")
+
+            elif discriminant == 0:
+                sol1 = round(-b/(2*a), 4)
+                st.success(f"One answer: $x = {sol1}$")
+
+            else:
+                sqrt_disc = discriminant**0.5
+                sol1 = round((-b + sqrt_disc)/(2*a), 4)
+                sol2 = round((-b - sqrt_disc)/(2*a), 4)
+                st.success(f"The roots are: $x_1 = {sol1}$ and $x_2 = {sol2}$")
+
+elif mode == "Calculus":
+    st.header("Calculus Solver")
+
+    st.info("Use * for multiplication and ** for powers")
+
+    user_input = st.text_input("Enter function:", value = "x**2 + x*5").strip()
+
+    if user_input:
+        try:
+            x = sp.symbols('x')
+            expr = sp.sympify(user_input, locals={'x': x})
+            st.write("---")
+            deriv = sp.diff(expr, x)
+            st.subheader("The Derivative ($f'(x)$)")
+            st.latex(r"f'(x) =" + sp.latex(deriv))
+            integ = sp.integrate(expr, x)
+            st.subheader("The Integral ($\int f(x) dx$)")
+            st.latex("r\int f(x) \, dx = " + sp.latex(integ) + r" +c")
+        except Exception as e:
+            st.error(f"Error: Could not parse '{user_input}'.")
+
+elif mode == "Stats":
