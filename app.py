@@ -17,7 +17,7 @@ if mode == "Single Equation":
     st.header("Solve $ax +b = c$")
     a = st.number_input("Value for a", value=0.0, key="a1")
     b = st.number_input("Value for b", value=0.0, key="b1")
-    c = st.number_input("Value for c", value=0.0, key="b1")
+    c = st.number_input("Value for c", value=0.0, key="c1")
 
     if st.button("Solve", key="btn_single"):
         if a == 0:
