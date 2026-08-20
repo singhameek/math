@@ -1,0 +1,1 @@
+This is a calculator app. U can solve linear equations, simultaneous equations, quadratics, trig, calculus, do statistics and unit conversions. Go forth and calculate.
