@@ -1,5 +1,6 @@
 import reflex as rx
 
+
 config = rx.Config(
-    app_name ="math_solver",
+    app_name="math_solver",
 )
