@@ -4,4 +4,3 @@ numpy
 sympy
 pandas
 scipy
-openpyx1
