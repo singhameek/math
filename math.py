@@ -61,3 +61,19 @@ elif mode == 3:
     print("The roots are",x1,"and",x2)
 
 
+elif mode == 4:
+    func = int(input("Select trig function: 1 for sine, 2 for cosine, 3 for tangent, 4 for arcsine, 5 for arccosine, 6 for arctangent \n"))
+    x = float(input("Value to calculate: use a degree value for regular functions and decimal for arc functions. Don't include units. \n"))
+
+    if func == 1:
+        print(math.sin(x))
+    elif func == 2:
+        print(math.cos(x))
+    elif func == 3:
+        print(math.tan(x))
+    elif func == 4:
+        print(math.asin(x))
+    elif func == 5:
+        print(math.acos(x))
+    elif func == 6:
+        print(math.atan(x))
