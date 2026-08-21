@@ -1,4 +1,5 @@
 import math
+import NumPy as np
 
 mode = int(input("Please choose mode: 1 for linear, 2 for simultaneous, 3 for quadratics, 4 for trigonometry, 5 for statistics \n"))
 
@@ -31,10 +32,17 @@ elif mode == 2:
             print("y =", answer)
         else:
             print("Could not determine, please ensure that the equations are real")
-    elif b and e ==0:
+    elif b and e == 0:
         answer = a/c
         check = f/d
         if answer/check == 1:
             print("x =", answer)
         else:
             print("Could not determine, please ensure that the equations are real")
+    else:
+        A = np.array([[a,d], [b,e]])
+        B = np.array([c,f])
+
+        answer = np.linalg.solve(A, B)
+
+        print(answer)
