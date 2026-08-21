@@ -66,14 +66,14 @@ elif mode == 4:
     x = float(input("Value to calculate: use a degree value for regular functions and decimal for arc functions. Don't include units. \n"))
 
     if func == 1:
-        print(math.sin(x))
+        print(math.sin(math.radians(x)))
     elif func == 2:
-        print(math.cos(x))
+        print(math.cos(math.radians(x)))
     elif func == 3:
-        print(math.tan(x))
+        print(math.tan(math.radians(x)))
     elif func == 4:
-        print(math.asin(x))
+        print(math.degrees(math.asin(x)))
     elif func == 5:
-        print(math.acos(x))
+        print(math.degrees(math.acos(x)))
     elif func == 6:
-        print(math.atan(x))
+        print(math.degrees(math.atan(x)))
