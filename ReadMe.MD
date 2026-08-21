@@ -2,7 +2,7 @@ This is a calculator app. The idea for this project came to me when I was lookin
 - Linear equations
 - Simultaneous Linear Equations
 - Quadratic Equations
-- Trigonometry(future)
+- Trigonometry
 - Calculus(future)
 - Statistics(future)
 - Unit Conversions(future)
