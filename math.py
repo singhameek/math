@@ -1,5 +1,4 @@
 import math
-import NumPy as np
 
 mode = int(input("Please choose mode: 1 for linear, 2 for simultaneous, 3 for quadratics, 4 for trigonometry, 5 for statistics \n"))
 
@@ -40,9 +39,25 @@ elif mode == 2:
         else:
             print("Could not determine, please ensure that the equations are real")
     else:
-        A = np.array([[a,d], [b,e]])
-        B = np.array([c,f])
+       determinant = (a*e) - (b*d) ##Cramer's Rule
 
-        answer = np.linalg.solve(A, B)
+       if determinant == 0:
+           print("Could not solve, ensure equations are real")
 
-        print(answer)
+       else:
+           x = ((c*e)-(b*f))/determinant
+           y=((a*f)-(c*d))/determinant
+           print("x equals", x, "and y equals", y)
+
+elif mode == 3:
+    print("Solving for ax**2 + bx + c = 0")
+    a = int(input("Value of a \n"))
+    b = int(input("Value of b \n"))
+    c = int(input("Value of c \n"))
+
+    x1 = (-b + ((b**2)-(4*a*c))**0.5)/(2*a)
+    x2 = (-b - ((b**2)-(4*a*c))**0.5)/(2*a)
+
+    print("The roots are",x1,"and",x2)
+
+
