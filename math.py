@@ -14,3 +14,27 @@ if mode == 1:
     else:
         answer = (c - b) / a
         print("x is equal to", answer)
+
+elif mode == 2:
+    print("Solving for ax + by = c and dx + ey = f")
+    a = int(input("Value for a \n"))
+    b = int(input("Value for b \n"))
+    c = int(input("Value for c \n"))
+    d = int(input("Value for d \n"))
+    e = int(input("Value for e \n"))
+    f = int(input("Value for f \n"))
+
+    if a and d == 0:
+        answer = c/b
+        check = f/e
+        if answer/check == 1:
+            print("y =", answer)
+        else:
+            print("Could not determine, please ensure that the equations are real")
+    elif b and e ==0:
+        answer = a/c
+        check = f/d
+        if answer/check == 1:
+            print("x =", answer)
+        else:
+            print("Could not determine, please ensure that the equations are real")
